@@ -1,6 +1,7 @@
 use std::{
     path::{Path, PathBuf},
     process::Command,
+    str,
 };
 
 use url::Url;
@@ -82,12 +83,22 @@ impl Index {
             .args(&["gc", "--auto"])
             .output();
 
-        if let Err(err) = gc {
-            log::error!(
-                "failed to run `git gc --auto`\npath: {:#?}\nerror: {:#?}",
-                &self.path,
-                err
-            );
+        match gc {
+            Err(err) => {
+                log::error!(
+                    "failed to run `git gc --auto`\npath: {:#?}\nerror: {:#?}",
+                    &self.path,
+                    err
+                );
+            }
+            Ok(output) => {
+                log::info!(
+                    "run_git_gc ran inside path: {:#?}\nstdout: {:#?}\nstderr: {:#?}",
+                    &self.path,
+                    str::from_utf8(&output.stdout).unwrap_or(""),
+                    str::from_utf8(&output.stderr).unwrap_or("")
+                );
+            }
         }
     }
 }
