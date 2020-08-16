@@ -12,8 +12,9 @@ jobs:
       - name: Merge upstream	
         run: |	
           git config --global user.name 'ohaddahan'	
-          git config --global user.email 'ohaddahan@users.noreply.github.com'	
-          git checkout master	
+          git config --global user.email 'ohaddahan@users.noreply.github.com'
+          git config pull.rebase true
+          git checkout master
           git pull --unshallow  # this option is very important, you would get	
                                 # complains about unrelated histories without it.	
                                 # (but actions/checkout@v2 can also be instructed	
