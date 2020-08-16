@@ -1,4 +1,4 @@
-name: Upsteam
+name: Fetch Upstream
 on:	
   schedule:	
      # actually, ~5 minutes is the highest	
