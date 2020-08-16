@@ -20,7 +20,7 @@ jobs:
     - name: Git-fetch-all
       run: git fetch --prune --unshallow
     - name: Git-remote-add
-      run: git remote add adobe https://github.com/ohaddahan/docs.rs.git
+      run: git remote add upstream https://github.com/rust-lang/docs.rs.git
     - name: Git-fetch-upstream
       run: git fetch upstream	
     - name: Git-checkout-master-2
